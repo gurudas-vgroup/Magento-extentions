@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+    Testimonial Listing UI Component
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <dataSource name="testimonial_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Vgroup65\Testimonial\Ui\Component\DataProvider</argument>
+            <argument name="name" xsi:type="string">testimonial_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">testimonial_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="aclResource" xsi:type="string">Vgroup65_Testimonial::manage_testimonial</item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="testimonial_columns">
+        <column name="testimonial_id">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <column name="designation">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Designation</label>
+            </settings>
+        </column>
+        <column name="testimonial">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Testimonial</label>
+            </settings>
+        </column>
+        <column name="status">
+            <settings>
+                <filter>select</filter>
+                <options class="Vgroup65\Testimonial\Model\System\Config\Status"/>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+
+<!--<actionsColumn name="actions" class="Magento\Ui\Component\Listing\Columns\Column">
+    <settings>
+        <indexField>testimonial_id</indexField>
+    </settings>
+    <action name="edit">
+        <settings>
+            <label translate="true">Edit</label>
+            <url path="testimonials/testimonial/edit">
+                <param name="id">testimonial_id</param>
+            </url>
+        </settings>
+    </action>
+    <action name="delete">
+        <settings>
+            <label translate="true">Delete</label>
+            <url path="testimonials/testimonial/delete">
+                <param name="id">testimonial_id</param>
+            </url>
+            <confirm>
+                <message translate="true">Are you sure you want to delete this testimonial?</message>
+            </confirm>
+        </settings>
+    </action>
+</actionsColumn>-->
+
+    </columns>
+</listing>

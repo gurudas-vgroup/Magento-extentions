@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright Â© Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="vgroup_testimonial" resource="default" engine="innodb" comment="Testimonial Table">
+        <column xsi:type="int" name="testimonial_id" padding="6" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="first_name" nullable="false" comment="First Name" />
+        <column xsi:type="varchar" name="last_name" nullable="false" comment="Last Name" />
+        <column xsi:type="varchar" name="gender" nullable="false" comment="Gender" />
+        <column xsi:type="smallint" name="age" unsigned="true" nullable="false" identity="false" comment="Age" />
+        <column xsi:type="varchar" name="designation" nullable="false" comment="Designation" />
+        <column xsi:type="varchar" name="company" nullable="false" comment="Company" />
+        <column xsi:type="text" name="image" nullable="false" comment="Image" />
+        <column xsi:type="text" name="resize_image" nullable="false" comment="Resize Image" />
+        <column xsi:type="text" name="testimonial" nullable="false" comment="Testimonial" />
+        <column xsi:type="varchar" name="website" nullable="false" comment="Website" />
+        <column xsi:type="text" name="address" nullable="false" comment="Address" />
+        <column xsi:type="varchar" name="city" nullable="false" comment="City"/>
+        <column xsi:type="varchar" name="state" nullable="false" comment="State"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" identity="false" comment="Status" default="1" />
+        <column xsi:type="timestamp" name="created_at" nullable="false" comment="Created At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="testimonial_id"/>
+        </constraint>
+    </table>
+
+    <table name="testimonial_configuration" resource="default" engine="innodb" comment="Testimonial Configuration Table">
+        <column xsi:type="int" name="configuration_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Configuration ID"/>
+        <column xsi:type="varchar" name="display_type" nullable="false" comment="Display Type" />
+        <column xsi:type="smallint" name="no_of_testimonial" unsigned="true" nullable="false" identity="false" default="1" comment="Testimonial To Display In Widget" />
+        <column xsi:type="smallint" name="auto_rotate" unsigned="true" nullable="false" identity="false" default="1" comment="Auto Rotation In Widget" />
+        <column xsi:type="varchar" name="top_menu_link" nullable="false" comment="Display Testimonial link on to nevigation" />
+        <column xsi:type="smallint" name="display_top_menu" unsigned="true" nullable="false" identity="false" default="1" comment="Display Testimonial on top menu" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="configuration_id"/>
+        </constraint>
+    </table>
+
+</schema>
