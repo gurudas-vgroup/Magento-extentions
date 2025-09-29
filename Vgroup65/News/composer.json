@@ -1,0 +1,18 @@
+{
+    "name": "vgroup65/news",
+    "description": "A module that creates a news in the Magento admin area and display news on front end",
+    "type": "magento2-module",
+    "version": "3.0.1",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Vgroup65\\News\\": ""
+        }
+    }
+}

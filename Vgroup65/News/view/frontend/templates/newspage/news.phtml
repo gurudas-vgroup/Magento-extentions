@@ -1,0 +1,101 @@
+<div class="vgNews">
+    <?php
+    $headNewsCategoryCollection = $block->getNewsCategory();
+    $getParam = $block->getRequest()->getParam('category');
+
+    if ($getParam && $getParam !== 'allNews') {
+        $headNewsCategoryCollection->addFieldToFilter('category_url', $getParam);
+        $headNewsCategoryCollection->addFieldToSelect('title');
+        foreach ($headNewsCategoryCollection as $title): ?>
+            <h2><?= $block->escapeHtml($title['title']); ?></h2>
+        <?php endforeach;
+    } else { ?>
+        <h2><?= $block->escapeHtml(__('Latest News')); ?></h2>
+    <?php } ?>
+
+    <div class="vgNews_cats">
+        <h2><?= $block->escapeHtml(__('News Category')); ?></h2>
+        <a href="<?= $block->escapeUrl($block->getUrl('news/', [])); ?>">
+            <?= $block->escapeHtml(__('All News')); ?>
+        </a>
+        <?php foreach ($block->getNewsCategory() as $category): ?>
+            <a href="<?= $block->escapeUrl($block->getUrl('news/category/view', ['category' => $category['category_url']])) ?>">
+                <?= $block->escapeHtml($category['title']); ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+
+    <div class="vgNews_content">
+        <?php $getNewsList = $block->getNewsList(); ?>
+        <?php if ($getNewsList->count() == 0): ?>
+            <p class="noresultfound"><?= $block->escapeHtml(__('Result not found')); ?></p>
+        <?php endif; ?>
+
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="pager"><?= /* @noEscape */ $block->getPagerHtml(); ?></div>
+        <?php endif; ?>
+
+        <ul class="vgNewsList"> 
+            <?php foreach ($getNewsList as $news): ?>
+                <li <?= empty($news->getImage()) ? 'class="no-image"' : '' ?>>
+                    <div class="left">
+                        <?php if ($news->getImage()):
+                            $newsImage = $news->getImage();
+                            if (!filter_var($newsImage, FILTER_VALIDATE_URL)) {
+                                $helper = $block->getHelper();
+                                $getBaseUrl = $helper->getBaseUrl();
+                                $newsImageSrcValue = $getBaseUrl . '/' . $newsImage;
+                            } else {
+                                $newsImageSrcValue = $newsImage;
+                            } ?>
+                            <a title="<?= $block->escapeHtmlAttr($news->getTitle()); ?>"
+                               href="<?= $block->escapeUrl($block->getUrl('news/view/detail', ['news' => $news->getUrlIdentifier()])); ?>">
+                                <img src="<?= $block->escapeUrl($newsImageSrcValue); ?>" 
+                                     alt="<?= $block->escapeHtmlAttr($news->getTitle()); ?>" />
+                            </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="right">
+                        <h3>
+                            <a href="<?= $block->escapeUrl($block->getUrl('news/view/detail', ['news' => $news->getUrlIdentifier()])); ?>">
+                                <?= $block->escapeHtml($news->getTitle()); ?>
+                            </a>
+                        </h3>
+                        <p class="small">
+                            <span><?= $block->escapeHtml(date('m/d/Y', strtotime($news->getPublishDate()))); ?></span>
+                            <?php if ($news->getCategoryId() != '0'):
+                                $newsCategoryIds = explode(',', $news->getCategoryId());
+                                $categoryData = [];
+                                foreach ($newsCategoryIds as $newsCategoryId) {
+                                    $categoryData[] = $block->getNewsCategoryTitle($newsCategoryId);
+                                }
+                                if (!empty($categoryData)): ?>
+                                    <span class="categories">
+                                        <?php $i = 0;
+                                        foreach ($categoryData as $cat):
+                                            if ($i++ > 0) { echo ', '; } ?>
+                                            <a href="<?= $block->escapeUrl($block->getUrl('news/category/view', ['category' => $cat['category_url']])); ?>">
+                                                <?= $block->escapeHtml($cat['title']); ?>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    </span>
+                                <?php endif;
+                            endif; ?>
+                        </p>
+
+                        <?php $description = $news->getDescription(); ?>
+                        <p>
+                            <?= /* @noEscape */ $block->getCmsFilterContent(substr($description, 0, 250)); ?>
+                            <?php if (strlen($description) > 250): ?>
+                                <a href="<?= $block->escapeUrl($block->getUrl('news/view/detail', ['news' => $news->getUrlIdentifier()])); ?>">
+                                    <?= $block->escapeHtml(__('Read More >>')); ?>
+                                </a>
+                            <?php endif; ?>
+                        </p>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>

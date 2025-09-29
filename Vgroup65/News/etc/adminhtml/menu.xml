@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Vgroup65_News::main_menu" title="News" module="Vgroup65_News" sortOrder="20" resource="Vgroup65_News::simplenews" />
+        <add id="Vgroup65_News::news_list" title="News" module="Vgroup65_News" sortOrder="2" parent="Vgroup65_News::main_menu" action="news/newslist/index" resource="Vgroup65_News::manage_news" />
+        <add id="Vgroup65_News::configuration" title="Configuration" module="Vgroup65_News" sortOrder="5" parent="Vgroup65_News::main_menu" action="news/newsconfiguration/index" resource="Vgroup65_News::manage_news" />
+    </menu>
+</config>

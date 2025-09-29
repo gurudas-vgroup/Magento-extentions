@@ -1,0 +1,56 @@
+{
+    "news_category": {
+        "column": {
+            "category_id": true,
+            "title": true,
+            "category_url": true,
+            "created_at": true,
+            "updated_at": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "news_list": {
+        "column": {
+            "news_id": true,
+            "category_id": true,
+            "title": true,
+            "url_identifier": true,
+            "description": true,
+            "image": true,
+            "publish_date": true,
+            "store_view": true,
+            "created_at": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "category_news_junction": {
+        "column": {
+            "category_news_id": true,
+            "category_id": true,
+            "news_id": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "news_configuration": {
+        "column": {
+            "news_config": true,
+            "no_of_news": true,
+            "auto_rotate": true,
+            "top_menu_text": true,
+            "display_top_menu": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

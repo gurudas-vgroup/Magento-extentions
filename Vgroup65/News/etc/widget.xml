@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="vgroupinc_newslist" class="Vgroup65\News\Block\Widget\Shownews">
+        <label translate="true">Show News</label>
+        <description>Show News Widget</description>
+<!--        <parameters>
+            <parameter name="categoryids" xsi:type="text"  visible="true" sort_order="1" >
+                <label translate="true">Category Ids</label>
+            </parameter>
+        </parameters>-->
+    </widget>
+</widgets>
